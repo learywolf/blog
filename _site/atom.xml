@@ -4,7 +4,7 @@
  <title>HOME</title>
  <link href="http://username.github.com/atom.xml" rel="self"/>
  <link href="http://username.github.com"/>
- <updated>2012-05-08T18:03:18+08:00</updated>
+ <updated>2012-05-08T19:08:13+08:00</updated>
  <id>http://username.github.com</id>
  <author>
    <name>Pengfei Li</name>
@@ -13,39 +13,60 @@
 
  
  <entry>
-   <title>测试文件1</title>
-   <link href="http://username.github.com/conf1/2012/04/25/test"/>
-   <updated>2012-04-25T00:00:00+08:00</updated>
-   <id>http://username.github.com/conf1/2012/04/25/test</id>
-   <content type="html">&lt;h1 id='id2'&gt;中文测试&lt;/h1&gt;
+   <title>Squid 3.0 简单测试</title>
+   <link href="http://username.github.com/安装配置/2012/05/08/squid-3.0-config"/>
+   <updated>2012-05-08T00:00:00+08:00</updated>
+   <id>http://username.github.com/安装配置/2012/05/08/squid-3.0-config</id>
+   <content type="html">&lt;h1 id='squid_30_'&gt;Squid 3.0 简单测试&lt;/h1&gt;
 
-&lt;p&gt;中文测试&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;中文测试&lt;/p&gt;
+&lt;p&gt;今天无聊尝试了下squid 3.0 感觉配置比2.6 简单的不少。 源码包 squid-3.0.STABLE5.tar.gz&lt;/p&gt;
 
-&lt;p&gt;* 中文测试&lt;/p&gt;
+&lt;h2 id='id1'&gt;解压：&lt;/h2&gt;
 
-&lt;blockquote&gt;
-&lt;p&gt;中文测试 中文测试&lt;/p&gt;
-&lt;/blockquote&gt;</content>
- </entry>
- 
- <entry>
-   <title>分类</title>
-   <link href="http://username.github.com/conf/2011/12/29/conf"/>
-   <updated>2011-12-29T00:00:00+08:00</updated>
-   <id>http://username.github.com/conf/2011/12/29/conf</id>
-   <content type="html">&lt;h1 id='id1'&gt;中文测试&lt;/h1&gt;
+&lt;pre&gt;&lt;code&gt; tar xzvf squid-3.0.STABLE5.tar.gz  &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;中文测试&lt;/p&gt;
-&lt;hr /&gt;
-&lt;p&gt;中文测试&lt;/p&gt;
+&lt;h2 id='id2'&gt;进入安装目录&lt;/h2&gt;
 
-&lt;p&gt;* 中文测试&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd squid-3.0.STABLE5&lt;/code&gt;&lt;/pre&gt;
 
-&lt;blockquote&gt;
-&lt;p&gt;中文测试 中文测试&lt;/p&gt;
-&lt;/blockquote&gt;</content>
+&lt;h2 id='id3'&gt;编译&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;./configure –prefix=/usr/local/squid 	
+make all	
+make install&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id='_usrlocalsquidetcsquidconf'&gt;编辑配置文件 /usr/local/squid/etc/squid.conf&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;visible_hostname squid1.fuck.com	
+http_port 80 accel vhost vport
+cache_mem 512 MB	
+maximum_object_size_in_memory 2048 KB	
+memory_replacement_policy lru	
+cache_dir ufs /tmp 512 16 256	
+logformat combined %&amp;gt;a %ui %un [%tl] “%rm %ru HTTP/%rv” %Hs %&amp;lt;st “%{Referer}&amp;gt;h” “%{User-Agent}&amp;gt;h” %Ss:%Sh	
+access_log /usr/local/squid/var/logs/page_zs_access_log combined	
+pid_filename /usr/local/squid/var/logs/squid.pid	
+cache_store_log none	
+dns_testnames localhost	
+http_access allow all	
+cache_log /var/log/squid/cache.log	
+acl QueryString url_regex \.php?	
+no_cache deny QueryString	
+maximum_object_size 320010 KB	
+maximum_object_size_in_memory 100 KB	
+
+
+cache_peer www.fuck.com parent 80 0 no-query originserver	
+cache_peer_domain fuck www.fuck.com	&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id='id4'&gt;创缓存目录&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;cd /usr/local/squid/sbin	
+./squid –z&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h1 id='id5'&gt;启动&lt;/h1&gt;
+
+&lt;pre&gt;&lt;code&gt;./squid –Nd1	&lt;/code&gt;&lt;/pre&gt;</content>
  </entry>
  
  

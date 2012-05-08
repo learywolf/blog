@@ -7,5 +7,4 @@ http://username.github.com/pages.html
 http://username.github.com/sitemap.txt
 http://username.github.com/tags.html
 
-http://username.github.com/conf1/2012/04/25/test
-http://username.github.com/conf/2011/12/29/conf
+http://username.github.com/安装配置/2012/05/08/squid-3.0-config
